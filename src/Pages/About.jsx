@@ -31,7 +31,7 @@ export default function About() {
   return (
     <Section>
       <Image src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Shop" />
-      <Title>About Shree Jewellers</Title>
+      <Title>About Shree Balaji Gems & Jewellers</Title>
       <Story>
         Established in 1985, Shree Jewellers is a family-run business known for trust, quality, and exquisite craftsmanship in gold and silver jewellery. Our designs blend tradition with modern elegance, making every piece a cherished memory.<br /><br />
         Visit us for a personalized experience and discover why generations trust Shree Jewellers for their most precious moments.
