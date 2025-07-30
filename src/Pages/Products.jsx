@@ -54,7 +54,7 @@ const goldProducts = [
     image: "/products/LadiesFashionRingGold.jpeg"
  },
   {
-    name: "Gold Earrings",
+    name: "Pendant Set",
     price: "        ",
     image: "/products/GoldEarrings.png"
   },

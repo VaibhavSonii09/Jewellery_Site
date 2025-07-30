@@ -68,7 +68,7 @@ const featuredProducts = [
  },
 
   {
-    nname: "Gold Ladies Rings",
+    name: "Gold Ladies Rings",
     price: "       ",
     image: "/products/GoldRings.png"
  }
@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <>
       <Hero>
-        <Title>Shri Balaji Jems & Jewellers</Title>
+        <Title>Shree Balaji Jems & Jewellers</Title>
         <Subtitle>
           Exquisite Gold & Silver Jewellery. Trusted since 1985.<br />
           Discover timeless designs for every occasion.
