@@ -112,7 +112,7 @@ export default function Contact() {
         <div>
           <iframe
             title="Shop Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d442.015687398984!2d76.61467171226205!3d27.589638498982804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397299335a6b4ad3%3A0x6e1d2bce6739db32!2sShree%20Balaji%20Gems%20%26%20Jewellers!5e0!3m2!1sen!2sin!4v1753862294168!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d442.015687398984!2d76.61467171226205!3d27.589638498982804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397299335a6b4ad3%3A0x6e1d2bce6739db32!2sShree%20Balaji%20Gems%20%26%20Jewellers!5e0!3m2!1sen!2sin!4v1753862294168!5m2!1sen!2sin"
             width="100%"
             height="200"
             style={{ border: 0, borderRadius: '12px', marginTop: '1rem' }}
