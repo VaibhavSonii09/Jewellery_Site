@@ -1,6 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion' // 1. Import motion
+import Testimonials from '../components/Testimonials'
+import FAQ from '../components/FAQ'
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
+
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -36,12 +40,15 @@ export default function About() {
       transition={{ duration: 0.7 }}
       as={Section}
     >
+    <GoogleReviewsWidget />
+    
       <Image src="/products/Shop1.png" alt="Shop" />
       <Title>About Shree Balaji Gems & Jewellers</Title>
       <Story>
         Established in 1985, Shree Jewellers is a family-run business known for trust, quality, and exquisite craftsmanship in gold and silver jewellery. Our designs blend tradition with modern elegance, making every piece a cherished memory.<br /><br />
         Visit us for a personalized experience and discover why generations trust Shree Jewellers for their most precious moments.
       </Story>
+    <FAQ />
     </motion.section>
   )
 }

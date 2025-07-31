@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import ProductCard from '../components/ProductCard'
 import { motion } from "framer-motion"
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -62,7 +63,7 @@ const goldProducts = [
   {
     name: "Haar",
     price: "        ",
-    image: "/prducts/goldHaar.png"
+    image: "/products/goldHaar.jpeg"
   },
   {
     name: "          ",
@@ -125,6 +126,8 @@ export default function Products() {
       transition={{ duration: 0.7 }}
       as={Section}
     >
+    <GoogleReviewsWidget />
+    
       <Tabs>
         <Tab active={tab === 'gold'} onClick={() => setTab('gold')}>Gold</Tab>
         <Tab active={tab === 'silver'} onClick={() => setTab('silver')}>Silver</Tab>

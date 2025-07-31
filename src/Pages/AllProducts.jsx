@@ -2,6 +2,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -61,6 +62,8 @@ export default function AllProducts() {
       transition={{ duration: 0.7 }}
       as={Section}
     >
+    <GoogleReviewsWidget />
+    
       <SectionTitle>All Product Names</SectionTitle>
       <ProductList>
         {allProducts.map((product, idx) => (

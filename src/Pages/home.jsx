@@ -3,6 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import { motion } from 'framer-motion'
+import Slider from 'react-slick'
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Testimonials from '../components/Testimonials'
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
 
 const Hero = styled.section`
   background: linear-gradient(120deg, #fffbe6 60%, #ffd700 100%);
@@ -56,26 +61,50 @@ const ProductsGrid = styled.div`
   gap: 2rem;
 `
 
+const galleryImages = [
+  "/products/GoldSet.png",
+  "/products/GoldEarrings.png",
+  "/products/GoldRings.png",
+  "/products/SilverKade.png",
+  "/products/LadiesFashionRingGold.jpeg"
+]
+
 const featuredProducts = [
   {
     name: "Gold Necklace Set",
     price: "         ",
     image: "/products/GoldSet.png"
- },
+  },
   {
     name: "Gold Earrings",
     price: "22,000",
     image: "/products/GoldEarrings.png"
- },
-
+  },
   {
     name: "Gold Ladies Rings",
     price: "       ",
     image: "/products/GoldRings.png"
- }
+  }
 ]
 
 export default function Home() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 800,
+        settings: { slidesToShow: 1 }
+      }
+    ]
+  }
+
   return (
     <>
       <motion.section
@@ -91,6 +120,28 @@ export default function Home() {
         </Subtitle>
         <CTA to="/products">Shop Now</CTA>
       </motion.section>
+
+      {/* Gallery Carousel */}
+      <div style={{ maxWidth: 700, margin: "2rem auto" }}>
+        <Slider {...settings}>
+          {galleryImages.map((img, idx) => (
+            <div key={idx}>
+              <img
+                src={img}
+                alt={`Gallery ${idx}`}
+                style={{
+                  width: "100%",
+                  borderRadius: 16,
+                  boxShadow: "0 4px 16px #0001",
+                  maxHeight: 350,
+                  objectFit: "cover"
+                }}
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -104,6 +155,9 @@ export default function Home() {
           ))}
         </ProductsGrid>
       </motion.section>
+<GoogleReviewsWidget />
+      {/* Animated Testimonials Section */}
+      <Testimonials />
     </>
   )
 }

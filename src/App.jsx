@@ -8,10 +8,8 @@ import Home from './Pages/home'
 import Products from './Pages/Products'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
-
+import WhatsAppButton from './components/WhatsAppButton'
 import AllProducts from './Pages/AllProducts'
-// ...
-
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -27,11 +25,11 @@ body {
     text-decoration: none;
     color: inherit;
     }
-    `
-    
-    export default function App() {
-      return (
-        <ThemeProvider theme={theme}>
+`
+
+export default function App() {
+  return (
+    <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Navbar />
       <Routes>
@@ -41,6 +39,7 @@ body {
         <Route path="/contact" element={<Contact />} />
         <Route path="/all-products" element={<AllProducts />} />
       </Routes>
+      <WhatsAppButton /> {/* WhatsApp chat button added here */}
       <Footer />
     </ThemeProvider>
   )

@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion' // 1. Import motion
+import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -101,6 +102,8 @@ export default function Contact() {
           onChange={handleChange}
           required
         />
+        <GoogleReviewsWidget />
+        
         <Textarea
           name="message"
           placeholder="Your Message"
