@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion' // 1. Import motion
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -29,13 +30,18 @@ const Image = styled.img`
 
 export default function About() {
   return (
-    <Section>
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      as={Section}
+    >
       <Image src="/products/Shop1.png" alt="Shop" />
       <Title>About Shree Balaji Gems & Jewellers</Title>
       <Story>
         Established in 1985, Shree Jewellers is a family-run business known for trust, quality, and exquisite craftsmanship in gold and silver jewellery. Our designs blend tradition with modern elegance, making every piece a cherished memory.<br /><br />
         Visit us for a personalized experience and discover why generations trust Shree Jewellers for their most precious moments.
       </Story>
-    </Section>
+    </motion.section>
   )
 }

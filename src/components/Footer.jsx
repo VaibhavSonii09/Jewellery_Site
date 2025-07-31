@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const FooterContainer = styled.footer`
   background: ${props => props.theme.colors.footer};
@@ -24,7 +25,12 @@ const Socials = styled.div`
 
 export default function Footer() {
   return (
-    <FooterContainer>
+    <motion.footer
+      initial={{ y: 80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, type: "spring" }}
+      as={FooterContainer}
+    >
       <Socials>
         <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <i className="fa-brands fa-instagram"></i>
@@ -36,7 +42,7 @@ export default function Footer() {
           <i className="fa-brands fa-whatsapp"></i>
         </a>
       </Socials>
-      <div>© {new Date().getFullYear()} Your Shop Name. All rights reserved.</div>
-    </FooterContainer>
+      <div>© {new Date().getFullYear()} Shree Balaji Gems & Jewellers. All rights reserved.</div>
+    </motion.footer>
   )
 }

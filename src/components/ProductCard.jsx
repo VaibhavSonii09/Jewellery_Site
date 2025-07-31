@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Card = styled.div`
   background: ${props => props.theme.colors.card};
@@ -7,10 +8,6 @@ const Card = styled.div`
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.2s;
-  &:hover {
-    transform: translateY(-8px) scale(1.03);
-    box-shadow: 0 8px 32px ${props => props.theme.colors.cardShadow};
-  }
 `
 
 const Image = styled.img`
@@ -36,12 +33,18 @@ const Price = styled.div`
 
 export default function ProductCard({ product }) {
   return (
-    <Card>
+    <motion.div
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      whileHover={{ scale: 1.05, boxShadow: "0 8px 32px rgba(0,0,0,0.15)" }}
+      transition={{ duration: 0.4 }}
+      as={Card}
+    >
       <Image src={product.image} alt={product.name} />
       <Info>
         <Title>{product.name}</Title>
         <Price>₹{product.price}</Price>
       </Info>
-    </Card>
+    </motion.div>
   )
 }

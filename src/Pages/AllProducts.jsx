@@ -1,6 +1,7 @@
 // src/pages/AllProducts.jsx
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -52,18 +53,28 @@ const allProducts = [
   // Add as many as you want!
 ]
 
-  // Add more products here
-
-
 export default function AllProducts() {
   return (
-    <Section>
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      as={Section}
+    >
       <SectionTitle>All Product Names</SectionTitle>
       <ProductList>
         {allProducts.map((product, idx) => (
-          <ProductItem key={idx}>{product.name}</ProductItem>
+          <motion.li
+            key={idx}
+            initial={{ x: -30, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: idx * 0.04 }}
+            as={ProductItem}
+          >
+            {product.name}
+          </motion.li>
         ))}
       </ProductList>
-    </Section>
+    </motion.section>
   )
 }

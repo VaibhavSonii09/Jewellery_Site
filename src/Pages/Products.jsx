@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import ProductCard from '../components/ProductCard'
+import { motion } from "framer-motion"
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -52,16 +53,16 @@ const goldProducts = [
     name: "Ladies Gold Ring",
     price: "    ",
     image: "/products/LadiesFashionRingGold.jpeg"
- },
+  },
   {
     name: "Pendant Set",
     price: "        ",
     image: "/products/GoldEarrings.png"
   },
   {
-    name: "          ",
+    name: "Haar",
     price: "        ",
-    image: "          "
+    image: "/prducts/goldHaar.png"
   },
   {
     name: "          ",
@@ -72,12 +73,12 @@ const goldProducts = [
     name: "          ",
     price: "        ",
     image: "          "
-  },{
+  },
+  {
     name: "          ",
     price: "        ",
     image: "          "
   }
-  
 ]
 
 const silverProducts = [
@@ -118,16 +119,28 @@ export default function Products() {
   const products = tab === 'gold' ? goldProducts : silverProducts
 
   return (
-    <Section>
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      as={Section}
+    >
       <Tabs>
         <Tab active={tab === 'gold'} onClick={() => setTab('gold')}>Gold</Tab>
         <Tab active={tab === 'silver'} onClick={() => setTab('silver')}>Silver</Tab>
       </Tabs>
-      <ProductsGrid>
+      <ProductsGrid as={motion.div}>
         {products.map((product, idx) => (
-          <ProductCard key={idx} product={product} />
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: idx * 0.07 }}
+          >
+            <ProductCard product={product} />
+          </motion.div>
         ))}
       </ProductsGrid>
-    </Section>
+    </motion.section>
   )
 }

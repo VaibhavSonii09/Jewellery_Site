@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 const Nav = styled.nav`
   background: ${props => props.theme.colors.nav};
@@ -37,7 +38,12 @@ const StyledLink = styled(Link)`
 export default function Navbar() {
   const location = useLocation()
   return (
-    <Nav>
+    <motion.nav
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, type: "spring" }}
+      as={Nav}
+    >
       <Link to="/">
         <Logo src="/logo.png" alt="Jewellery Shop Logo" />
       </Link>
@@ -47,8 +53,7 @@ export default function Navbar() {
         <StyledLink to="/about" active={location.pathname === "/about"}>About</StyledLink>
         <StyledLink to="/contact" active={location.pathname === "/contact"}>Contact</StyledLink>
         <StyledLink to="/all-products" active={location.pathname === "/all-products"}>All Products</StyledLink>
-
       </NavLinks>
-    </Nav>
+    </motion.nav>
   )
 }

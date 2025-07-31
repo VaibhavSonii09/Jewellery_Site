@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
+import { motion } from 'framer-motion'
 
 const Hero = styled.section`
   background: linear-gradient(120deg, #fffbe6 60%, #ffd700 100%);
@@ -77,22 +78,32 @@ const featuredProducts = [
 export default function Home() {
   return (
     <>
-      <Hero>
-        <Title>Shree Balaji Jems & Jewellers</Title>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        as={Hero}
+      >
+        <Title>Shree Balaji Gems & Jewellers</Title>
         <Subtitle>
           Exquisite Gold & Silver Jewellery. Trusted since 1985.<br />
           Discover timeless designs for every occasion.
         </Subtitle>
         <CTA to="/products">Shop Now</CTA>
-      </Hero>
-      <Section>
+      </motion.section>
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+        as={Section}
+      >
         <SectionTitle>Featured Collections</SectionTitle>
         <ProductsGrid>
           {featuredProducts.map((product, idx) => (
             <ProductCard key={idx} product={product} />
           ))}
         </ProductsGrid>
-      </Section>
+      </motion.section>
     </>
   )
 }

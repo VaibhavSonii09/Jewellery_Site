@@ -1,6 +1,7 @@
 // src/pages/Contact.jsx
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion' // 1. Import motion
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -77,7 +78,12 @@ export default function Contact() {
   }
 
   return (
-    <Section>
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7 }}
+      as={Section}
+    >
       <Title>Contact Us</Title>
       <Form onSubmit={handleSubmit}>
         <Input
@@ -122,6 +128,6 @@ export default function Contact() {
           ></iframe>
         </div>
       </Info>
-    </Section>
+    </motion.section>
   )
 }
