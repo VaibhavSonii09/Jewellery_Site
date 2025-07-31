@@ -8,8 +8,8 @@ import Home from './Pages/home'
 import Products from './Pages/Products'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
-import WhatsAppButton from './components/WhatsappButton'
 import AllProducts from './Pages/AllProducts'
+import WhatsAppButton from './components/WhatsAppButton' // Importing WhatsApp button component
 
 const GlobalStyle = createGlobalStyle`
 body {
