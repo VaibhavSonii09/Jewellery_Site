@@ -22,7 +22,7 @@ const Button = styled.a`
   }
 `
 
-export default function WhatsAppButton() {
+export default function WhatsappButton() {
   return (
     <Button
       href="https://wa.me/919214332699"
