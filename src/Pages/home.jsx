@@ -1,4 +1,5 @@
-import React from 'react'
+// src/Pages/home.jsx
+import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
@@ -8,12 +9,66 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Testimonials from '../components/Testimonials'
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
+import { useCart } from '../context/CartContext' // <-- import the cart context
 
-const Hero = styled.section`
+// --- ParallaxHero styles and component ---
+const ParallaxHeroWrapper = styled.section`
   background: linear-gradient(120deg, #fffbe6 60%, #ffd700 100%);
-  padding: 4rem 2rem 2rem 2rem;
+  padding: 0;
   text-align: center;
-`
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 0 32px 32px;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ParallaxImage = styled.div`
+  background: url('/products/GoldSet.png') center/cover no-repeat;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.18;
+  z-index: 1;
+  transition: transform 0.2s;
+  will-change: transform;
+`;
+
+const ParallaxContent = styled.div`
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 4rem 2rem 2rem 2rem;
+`;
+
+function ParallaxHero({ children }) {
+  const imgRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const { width, height, left, top } = imgRef.current.parentNode.getBoundingClientRect();
+    const x = (e.clientX - left - width / 2) / 18;
+    const y = (e.clientY - top - height / 2) / 18;
+    imgRef.current.style.transform = `translate(${x}px, ${y}px) scale(1.04)`;
+  };
+
+  const handleMouseLeave = () => {
+    imgRef.current.style.transform = "translate(0,0) scale(1)";
+  };
+
+  return (
+    <ParallaxHeroWrapper
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <ParallaxImage ref={imgRef} />
+      <ParallaxContent>
+        {children}
+      </ParallaxContent>
+    </ParallaxHeroWrapper>
+  );
+}
+// --- End ParallaxHero ---
 
 const Title = styled.h1`
   font-size: 2.8rem;
@@ -88,6 +143,8 @@ const featuredProducts = [
 ]
 
 export default function Home() {
+  const { addToCart } = useCart(); // <-- get addToCart from context
+
   const settings = {
     dots: true,
     infinite: true,
@@ -107,19 +164,14 @@ export default function Home() {
 
   return (
     <>
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        as={Hero}
-      >
+      <ParallaxHero>
         <Title>Shree Balaji Gems & Jewellers</Title>
         <Subtitle>
           Exquisite Gold & Silver Jewellery. Trusted since 1985.<br />
           Discover timeless designs for every occasion.
         </Subtitle>
         <CTA to="/products">Shop Now</CTA>
-      </motion.section>
+      </ParallaxHero>
 
       {/* Gallery Carousel */}
       <div style={{ maxWidth: 700, margin: "2rem auto" }}>
@@ -151,12 +203,15 @@ export default function Home() {
         <SectionTitle>Featured Collections</SectionTitle>
         <ProductsGrid>
           {featuredProducts.map((product, idx) => (
-            <ProductCard key={idx} product={product} />
+            <ProductCard
+              key={idx}
+              product={product}
+              onAddToCart={() => addToCart(product)}
+            />
           ))}
         </ProductsGrid>
       </motion.section>
-<GoogleReviewsWidget />
-      {/* Animated Testimonials Section */}
+      <GoogleReviewsWidget />
       <Testimonials />
     </>
   )

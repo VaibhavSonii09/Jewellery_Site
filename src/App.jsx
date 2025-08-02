@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Routes, Route } from 'react-router-dom'
@@ -9,7 +10,9 @@ import Products from './Pages/Products'
 import About from './Pages/About'
 import Contact from './Pages/Contact'
 import AllProducts from './Pages/AllProducts'
-import WhatsAppButton from './components/WhatsAppButton' // Importing WhatsApp button component
+import WhatsAppButton from './components/WhatsAppButton'
+import Cart from './Pages/Cart'
+import { CartProvider } from './context/CartContext'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -30,17 +33,20 @@ body {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/all-products" element={<AllProducts />} />
-      </Routes>
-      <WhatsAppButton /> {/* WhatsApp chat button added here */}
-      <Footer />
+      <CartProvider>
+        <GlobalStyle />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/all-products" element={<AllProducts />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        <WhatsAppButton />
+        <Footer />
+      </CartProvider>
     </ThemeProvider>
   )
 }

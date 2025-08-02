@@ -1,37 +1,35 @@
-import React from 'react'
-import styled from 'styled-components'
-
-const Button = styled.a`
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #25d366;
-  color: #fff;
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  box-shadow: 0 4px 16px #0002;
-  z-index: 999;
-  transition: background 0.2s;
-  &:hover {
-    background: #128c7e;
-  }
-`
+// src/components/WhatsAppButton.jsx
+import React from "react";
 
 export default function WhatsAppButton() {
   return (
-    <Button
-      href="https://wa.me/919214332699"
+    <a
+      href="https://wa.me/919876543210"  // <-- Replace with your WhatsApp number
       target="_blank"
       rel="noopener noreferrer"
+      style={{
+        position: "fixed",
+        top: 32,
+        right: 32,
+        background: "#25D366",
+        color: "#fff",
+        border: "none",
+        borderRadius: "50%",
+        width: 56,
+        height: 56,
+        fontSize: 28,
+        cursor: "pointer",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+        zIndex: 1000,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textDecoration: "none"
+      }}
       aria-label="Chat on WhatsApp"
-      title="Chat on WhatsApp"
     >
-      <i className="fa-brands fa-whatsapp"></i>
-    </Button>
-  )
+      <i className="fab fa-whatsapp" style={{ color: "#fff" }}></i>
+      
+    </a>
+  );
 }

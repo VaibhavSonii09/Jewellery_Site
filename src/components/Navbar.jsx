@@ -53,6 +53,7 @@ export default function Navbar() {
         <StyledLink to="/about" active={location.pathname === "/about"}>About</StyledLink>
         <StyledLink to="/contact" active={location.pathname === "/contact"}>Contact</StyledLink>
         <StyledLink to="/all-products" active={location.pathname === "/all-products"}>All Products</StyledLink>
+        <StyledLink to="/cart">Cart</StyledLink>
       </NavLinks>
     </motion.nav>
   )
