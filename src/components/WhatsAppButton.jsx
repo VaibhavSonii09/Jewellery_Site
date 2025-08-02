@@ -9,7 +9,7 @@ export default function WhatsAppButton() {
       rel="noopener noreferrer"
       style={{
         position: "fixed",
-        top: 32,
+        top: 65,
         right: 32,
         background: "#25D366",
         color: "#fff",

@@ -53,13 +53,16 @@ const AddToCartButton = styled(motion.button)`
 
 export default function ProductCard({ product, onAddToCart }) {
   const [modalOpen, setModalOpen] = useState(false)
+  const [quantity, setQuantity] = useState(1)
+  const [addedMsg, setAddedMsg] = useState(false)
 
-  // Add to cart handler
   const handleAddToCart = () => {
-    if (onAddToCart) onAddToCart(product);
+    if (onAddToCart) onAddToCart({ ...product, quantity }); // <-- pass quantity!
+    setAddedMsg(true);
+    setTimeout(() => setAddedMsg(false), 1500);
     setModalOpen(false);
+    setQuantity(1);
   };
-
 
   return (
     <>
@@ -98,6 +101,25 @@ export default function ProductCard({ product, onAddToCart }) {
           style={{ width: "100%", borderRadius: 12, marginBottom: 16 }}
         />
         <p style={{ margin: "1rem 0" }}>Price: ₹{product.price}</p>
+        <div style={{ margin: "1rem 0" }}>
+          <label>
+            Quantity:{" "}
+            <input
+              type="number"
+              min={1}
+              value={quantity}
+              onChange={e => setQuantity(Number(e.target.value))}
+              style={{
+                width: 60,
+                padding: "0.3rem",
+                borderRadius: 6,
+                border: "1px solid #ccc",
+                fontSize: 16,
+                textAlign: "center"
+              }}
+            />
+          </label>
+        </div>
         <AddToCartButton
           whileTap={{ scale: 0.92 }}
           whileHover={{ scale: 1.08, backgroundColor: "#b4884a", color: "#fff" }}
@@ -107,6 +129,11 @@ export default function ProductCard({ product, onAddToCart }) {
         >
           🛒 Add to Cart
         </AddToCartButton>
+        {addedMsg && (
+          <div style={{ color: "#25D366", marginTop: 12, fontWeight: 600 }}>
+            Item added to cart!
+          </div>
+        )}
         <br />
         <button
           onClick={() => setModalOpen(false)}

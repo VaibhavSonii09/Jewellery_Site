@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import ProductCard from '../components/ProductCard'
 import { motion } from "framer-motion"
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
+import { useCart } from '../context/CartContext' // <-- import useCart
 
 const Section = styled.section`
   padding: 3rem 2rem;
@@ -42,82 +43,100 @@ const ProductsGrid = styled.div`
 const goldProducts = [
   {
     name: "Gold Necklace Set",
-    price: "         ",
+    price: "72500",
     image: "/products/GoldSet.png"
   },
   {
     name: "Gold Rings",
-    price: "       ",
+    price: "24500",
     image: "/products/GoldRings.png"
   },
   {
     name: "Ladies Gold Ring",
-    price: "    ",
+    price: "28900",
     image: "/products/LadiesFashionRingGold.jpeg"
   },
   {
     name: "Pendant Set",
-    price: "        ",
+    price: "122000",
     image: "/products/GoldEarrings.png"
   },
   {
     name: "Haar",
-    price: "        ",
+    price: "80700",
     image: "/products/goldHaar.jpeg"
   },
+  // --- New Gold Products with Unsplash images ---
   {
-    name: "          ",
-    price: "        ",
-    image: "          "
+    name: "Gold Bangle",
+    price: "18,000",
+    image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=400&q=80"
   },
   {
-    name: "          ",
-    price: "        ",
-    image: "          "
+    name: "Gold Chain",
+    price: "22,500",
+    image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80"
   },
   {
-    name: "          ",
-    price: "        ",
-    image: "          "
+    name: "Gold Stud Earrings",
+    price: "9,500",
+    image: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
   }
 ]
 
 const silverProducts = [
   {
     name: "Bacchha Kada",
-    price: "          ",
+    price: "1800",
     image: "/products/BaccheKade.png"
   },
   {
     name: " Kade",
-    price: "     ",
+    price: "4999",
     image: "/products/SilverKade.png"
   },
   {
     name: " Flower Pattern Ring",
-    price: "        ",
+    price: "1499",
     image: "/products/SilverFlowerPatternRing.png"
   },
   {
     name: "Kitchen Set",
-    price: "        ",
+    price: "20049",
     image: "/products/KitchenSet.png"
   },
   {
     name: "Pooja Set",
-    price: "        ",
+    price: "15000",
     image: "/products/PoojaSet.png"
   },
   {
     name: "Payal",
-    price: "        ",
+    price: "6000",
     image: "/products/Payal.png"
+  },
+  // --- New Silver Products with Unsplash images ---
+  {
+    name: "Silver Pendant",
+    price: "2,500",
+    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    name: "Silver Earrings",
+    price: "3,200",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80"
+  },
+  {
+    name: "Silver Bracelet",
+    price: "4,800",
+    image: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
   }
 ]
 
 export default function Products() {
   const [tab, setTab] = useState('gold')
   const products = tab === 'gold' ? goldProducts : silverProducts
+  const { addToCart } = useCart(); // <-- get addToCart from context
 
   return (
     <motion.section
@@ -126,8 +145,7 @@ export default function Products() {
       transition={{ duration: 0.7 }}
       as={Section}
     >
-    <GoogleReviewsWidget />
-    
+      <GoogleReviewsWidget />
       <Tabs>
         <Tab active={tab === 'gold'} onClick={() => setTab('gold')}>Gold</Tab>
         <Tab active={tab === 'silver'} onClick={() => setTab('silver')}>Silver</Tab>
@@ -140,7 +158,10 @@ export default function Products() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.07 }}
           >
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              onAddToCart={productWithQty => addToCart(productWithQty)}
+            />
           </motion.div>
         ))}
       </ProductsGrid>

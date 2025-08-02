@@ -79,8 +79,8 @@ export default function Navbar() {
       <NavLinks open={menuOpen}>
         <Link to="/" onClick={handleLinkClick}>Home</Link>
         <Link to="/products" onClick={handleLinkClick}>Products</Link>
-        <Link to="/about" onClick={handleLinkClick}>About</Link>
         <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
+        <Link to="/about" onClick={handleLinkClick}>About</Link>
         <Link to="/all-products" onClick={handleLinkClick}>All Products</Link>
         <Link to="/cart" onClick={handleLinkClick}>
           Cart

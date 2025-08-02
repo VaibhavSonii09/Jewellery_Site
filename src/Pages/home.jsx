@@ -9,9 +9,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Testimonials from '../components/Testimonials'
 import GoogleReviewsWidget from '../components/GoogleReviewsWidget'
-import { useCart } from '../context/CartContext' // <-- import the cart context
+import { useCart } from '../context/CartContext'
 
-// --- ParallaxHero styles and component ---
 const ParallaxHeroWrapper = styled.section`
   background: linear-gradient(120deg, #fffbe6 60%, #ffd700 100%);
   padding: 0;
@@ -68,7 +67,6 @@ function ParallaxHero({ children }) {
     </ParallaxHeroWrapper>
   );
 }
-// --- End ParallaxHero ---
 
 const Title = styled.h1`
   font-size: 2.8rem;
@@ -127,7 +125,7 @@ const galleryImages = [
 const featuredProducts = [
   {
     name: "Gold Necklace Set",
-    price: "         ",
+    price: "72500",
     image: "/products/GoldSet.png"
   },
   {
@@ -136,14 +134,14 @@ const featuredProducts = [
     image: "/products/GoldEarrings.png"
   },
   {
-    name: "Gold Ladies Rings",
-    price: "       ",
+    name: " Ladies Gold Rings",
+    price: "5599",
     image: "/products/GoldRings.png"
   }
 ]
 
 export default function Home() {
-  const { addToCart } = useCart(); // <-- get addToCart from context
+  const { addToCart } = useCart();
 
   const settings = {
     dots: true,
@@ -206,7 +204,7 @@ export default function Home() {
             <ProductCard
               key={idx}
               product={product}
-              onAddToCart={() => addToCart(product)}
+              onAddToCart={productWithQty => addToCart(productWithQty)}
             />
           ))}
         </ProductsGrid>
