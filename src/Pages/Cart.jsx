@@ -2,6 +2,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useCart } from "../context/CartContext";
+import { useOrders } from "../context/OrderContext";
+import { useNavigate } from "react-router-dom";
+import { useNotifications } from "../context/NotificationContext";
 
 const CartSection = styled.section`
   background: #fffbe6;
@@ -85,7 +88,10 @@ const CheckoutButton = styled.button`
 `;
 
 export default function Cart() {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
+  const { addOrder } = useOrders();
+  const navigate = useNavigate();
+  const { showSuccess, showError } = useNotifications();
 
   // Calculate total price (assumes price is a string like "₹2500" or "2500")
   const total = cart.reduce((sum, item) => {
@@ -103,8 +109,14 @@ export default function Cart() {
       description: "Jewellery Purchase",
       image: "/logo.png", // Optional: your logo
       handler: function (response) {
-        alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
-        // Optionally clear cart or redirect to a success page here
+        // Add order to orders list
+        const newOrder = addOrder(cart, amount);
+        
+        showSuccess(`Payment successful! Order #${newOrder.id} has been placed.`);
+        // Clear cart after successful payment
+        clearCart();
+        // Navigate to orders page using React Router
+        navigate("/orders");
       },
       prefill: {
         name: "",

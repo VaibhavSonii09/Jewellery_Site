@@ -11,8 +11,16 @@ import About from './Pages/About'
 import Contact from './Pages/Contact'
 import AllProducts from './Pages/AllProducts'
 import WhatsAppButton from './components/WhatsAppButton'
+import CartButton from './components/CartButton'
 import Cart from './Pages/Cart'
+import OrderedItems from './Pages/OrderedItems'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
 import { CartProvider } from './context/CartContext'
+import { OrderProvider } from './context/OrderContext'
+import { AuthProvider } from './context/AuthContext'
+import { NotificationProvider } from './context/NotificationContext'
+import Notification from './components/Notification'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -33,20 +41,31 @@ body {
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CartProvider>
-        <GlobalStyle />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/all-products" element={<AllProducts />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <WhatsAppButton />
-        <Footer />
-      </CartProvider>
+      <NotificationProvider>
+        <AuthProvider>
+          <CartProvider>
+            <OrderProvider>
+              <GlobalStyle />
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/all-products" element={<AllProducts />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/orders" element={<OrderedItems />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
+              </Routes>
+              <WhatsAppButton />
+              <CartButton />
+              <Footer />
+              <Notification />
+            </OrderProvider>
+          </CartProvider>
+        </AuthProvider>
+      </NotificationProvider>
     </ThemeProvider>
   )
 }
